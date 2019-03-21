@@ -15,6 +15,11 @@ public class RandomFile {
 	private RandomAccessFile output;
 	private RandomAccessFile input;
 
+	private void systemExitWithDialog(String messageToDisplay) {
+		JOptionPane.showMessageDialog(null, messageToDisplay);
+		System.exit(1);
+	}
+
 	// Create new file
 	public void createFile(String fileName) {
 		RandomAccessFile file = null;
@@ -25,8 +30,7 @@ public class RandomFile {
 
 		} // end try
 		catch (IOException ioException) {
-			JOptionPane.showMessageDialog(null, "Error processing file!");
-			System.exit(1);
+			systemExitWithDialog("Error processing file!");
 		} // end catch
 
 		finally {
@@ -35,8 +39,7 @@ public class RandomFile {
 					file.close(); // close file
 			} // end try
 			catch (IOException ioException) {
-				JOptionPane.showMessageDialog(null, "Error closing file!");
-				System.exit(1);
+				systemExitWithDialog("Error closing file!");
 			} // end catch
 		} // end finally
 	} // end createFile
@@ -60,8 +63,7 @@ public class RandomFile {
 				output.close();
 		} // end try
 		catch (IOException ioException) {
-			JOptionPane.showMessageDialog(null, "Error closing file!");
-			System.exit(1);
+			showSystemExitDialog("Error closing file!");
 		} // end catch
 	} // end closeFile
 
@@ -153,8 +155,7 @@ public class RandomFile {
 				input.close();
 		} // end try
 		catch (IOException ioException) {
-			JOptionPane.showMessageDialog(null, "Error closing file!");
-			System.exit(1);
+			systemExitWithDialog("Error closing file!");
 		} // end catch
 	} // end method closeFile
 

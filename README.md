@@ -21,3 +21,6 @@ new Color(255, 150, 150);` and called the incorrectInput object to set the colou
 
 - 5, I replaced the long `if` statement that checks to see if the filename ends with .dat with a simple regex expression 
 `if(fileName.toString.matches(".*?\\.dat"))`
+
+- 6, In RandomFile, There was a few instances of duplicate code which was displaying a dialog and then closing the app. I
+extracted this into a separate method and allowed the user to pass the error message as the parameter
