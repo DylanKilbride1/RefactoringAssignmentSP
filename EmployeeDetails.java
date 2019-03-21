@@ -56,7 +56,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	private static final DecimalFormat fieldFormat = new DecimalFormat("0.00");
 	// hold object start position in file
 	private long currentByteStart = 0;
-	private RandomFile application = new RandomFile();
+	private FileHandlerService application = new FileHandlerService();
 	// display files in File Chooser only with extension .dat
 	private FileNameExtensionFilter datfilter = new FileNameExtensionFilter("dat files (*.dat)", "dat");
 	// hold file name and path for current file in use
