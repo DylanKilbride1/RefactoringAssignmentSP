@@ -18,3 +18,6 @@ quite a few places. Having it in one single method makes teh code more concise a
 - 4, Rather than calling an anonymous `Color` class for every time the application needs to set a new colour, I just 
 created a new color instance as a global variable in the EmployeeDetails class `private Color incorrectInput = 
 new Color(255, 150, 150);` and called the incorrectInput object to set the colour
+
+- 5, I replaced the long `if` statement that checks to see if the filename ends with .dat with a simple regex expression 
+`if(fileName.toString.matches(".*?\\.dat"))`

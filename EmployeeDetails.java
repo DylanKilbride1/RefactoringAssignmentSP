@@ -686,10 +686,9 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		int filenameLength = fileName.toString().length();
 
 		// check if last characters in file name is .dat
-		//TODO replace with regex check
-		if (fileName.toString().charAt(filenameLength - 4) == '.' && fileName.toString().charAt(filenameLength - 3) == 'd'
-				&& fileName.toString().charAt(filenameLength - 2) == 'a' && fileName.toString().charAt(filenameLength - 1) == 't')
+		if (fileName.toString().matches(".*?\\.dat")) {
 			checkFile = true;
+		}
 		return checkFile;
 	}// end checkFileName
 
