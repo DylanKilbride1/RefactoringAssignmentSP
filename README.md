@@ -29,3 +29,6 @@ extracted this into a separate method and allowed the user to pass the error mes
 
 - 8 Renamed RandomFile class to FileHandlerService. RandomFile was ambiguous and provided no indication as to the purpose
 of the class
+
+- 9, Removed all comments and unnecessary line breaks. Code should be written well enough that comments are not needed to 
+explain the purpose of it. Unnecessary line breaks were also removed as to shorten code.
