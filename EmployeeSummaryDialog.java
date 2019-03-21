@@ -112,8 +112,8 @@ public class EmployeeSummaryDialog extends JDialog implements ActionListener {
 		return summaryDialog;
 	}// end summaryPane
 
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == back){
+	public void actionPerformed(ActionEvent event) {
+		if (event.getSource() == back){
 			dispose();
 		}
 
@@ -126,8 +126,8 @@ public class EmployeeSummaryDialog extends JDialog implements ActionListener {
 		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
 				int row, int column) {
 
-			Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-			 JLabel label = (JLabel) c;
+			Component component = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+			 JLabel label = (JLabel) component;
 			 label.setHorizontalAlignment(JLabel.RIGHT);
 			 // format salary column
 			value = format.format((Number) value);

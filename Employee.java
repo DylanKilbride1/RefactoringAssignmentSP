@@ -15,6 +15,7 @@ public class Employee{
 	private boolean fullTime;
 
 	// Create Employee with no details
+	//TODO remove redundant constructor
 	public Employee() {
 		this.employeeId = 0;
 		this.pps = "";
