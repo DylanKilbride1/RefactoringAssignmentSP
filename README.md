@@ -27,8 +27,12 @@ extracted this into a separate method and allowed the user to pass the error mes
 
 - 7, Removed redundant JTextFieldLimit method in the JTextFieldLimit class
 
-- 8 Renamed RandomFile class to FileHandlerService. RandomFile was ambiguous and provided no indication as to the purpose
+- 8, Renamed RandomFile class to FileHandlerService. RandomFile was ambiguous and provided no indication as to the purpose
 of the class
 
 - 9, Removed all comments and unnecessary line breaks. Code should be written well enough that comments are not needed to 
 explain the purpose of it. Unnecessary line breaks were also removed as to shorten code.
+
+- 10, Moved the MenuItem Mnemonic setting to a separate method in EmployeeDetails.
+
+- 11, Removed long `if` check for correct pps number in EmployeeDetails and replaced with regex expression `[0-9]{7}[a-zA-Z]$|[0-9]{8}`

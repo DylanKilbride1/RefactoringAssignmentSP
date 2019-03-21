@@ -53,6 +53,10 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	boolean changesMade = false;
 	private JMenuItem open, save, saveAs, create, modify, delete, firstItem, lastItem, nextItem, prevItem, searchById,
 			searchBySurname, listAll, closeApp;
+	private JMenu fileMenu = new JMenu("File");
+	private JMenu	recordMenu = new JMenu("Records");
+	private JMenu navigateMenu = new JMenu("Navigate");
+	private JMenu closeMenu = new JMenu("Exit");
 	private JButton first, previous, next, last, add, edit, deleteButton, displayAll, searchId, searchSurname,
 			saveChange, cancelChange;
 	private JComboBox<String> genderCombo, departmentCombo, fullTimeCombo;
@@ -69,16 +73,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 
 	private JMenuBar menuBar() {
 		JMenuBar menuBar = new JMenuBar();
-		JMenu fileMenu, recordMenu, navigateMenu, closeMenu;
-
-		fileMenu = new JMenu("File");
-		fileMenu.setMnemonic(KeyEvent.VK_F);
-		recordMenu = new JMenu("Records");
-		recordMenu.setMnemonic(KeyEvent.VK_R);
-		navigateMenu = new JMenu("Navigate");
-		navigateMenu.setMnemonic(KeyEvent.VK_N);
-		closeMenu = new JMenu("Exit");
-		closeMenu.setMnemonic(KeyEvent.VK_E);
+		setUpMenuItemMnemonics();
 
 		menuBar.add(fileMenu);
 		menuBar.add(recordMenu);
@@ -121,6 +116,13 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		closeApp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F4, ActionEvent.CTRL_MASK));
 
 		return menuBar;
+	}
+
+	private void setUpMenuItemMnemonics() {
+		fileMenu.setMnemonic(KeyEvent.VK_F);
+		recordMenu.setMnemonic(KeyEvent.VK_R);
+		navigateMenu.setMnemonic(KeyEvent.VK_N);
+		closeMenu.setMnemonic(KeyEvent.VK_E);
 	}
 
 	private JPanel searchPanel() {
@@ -314,7 +316,6 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	}
 
 	private void displayEmployeeSummaryDialog() {
-
 		if (isSomeoneToDisplay())
 			new EmployeeSummaryDialog(getAllEmloyees());
 	}
@@ -540,7 +541,6 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		boolean someoneToDisplay = false;
 
 		application.openReadFile(file.getAbsolutePath());
-
 		someoneToDisplay = application.isSomeoneToDisplay();
 		application.closeReadFile();
 
@@ -563,11 +563,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		boolean ppsExist = false;
 
 		if (pps.length() == 8 || pps.length() == 9) {
-			if (Character.isDigit(pps.charAt(0)) && Character.isDigit(pps.charAt(1))
-					&& Character.isDigit(pps.charAt(2))	&& Character.isDigit(pps.charAt(3)) 
-					&& Character.isDigit(pps.charAt(4))	&& Character.isDigit(pps.charAt(5)) 
-					&& Character.isDigit(pps.charAt(6))	&& Character.isLetter(pps.charAt(7))
-					&& (pps.length() == 8 || Character.isLetter(pps.charAt(8)))) {
+			if (pps.matches("[0-9]{7}[a-zA-Z]$|[0-9]{8}")) {
 
 				application.openReadFile(file.getAbsolutePath());
 
