@@ -74,6 +74,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	private static EmployeeDetails frame = new EmployeeDetails();
 	// font for labels, text fields and combo boxes
 	Font font1 = new Font("SansSerif", Font.BOLD, 16);
+	private Color incorrectInput = new Color(255, 150, 150);
 	// holds automatically generated file name
 	String generatedFileName;
 	// holds current Employee object
@@ -434,6 +435,10 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		} // end if
 	}// end lastRecord
 
+	public String getTextAndTrim(JTextField jTextField){
+		return jTextField.getText().trim();
+	}
+
 	// search Employee by ID
 	public void searchEmployeeById() {
 		boolean found = false;
@@ -445,9 +450,9 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 				int firstId = currentEmployee.getEmployeeId();
 				// if ID to search is already displayed do nothing else loop
 				// through records
-				if (searchByIdField.getText().trim().equals(idField.getText().trim()))
+				if (getTextAndTrim(searchByIdField).equals(getTextAndTrim(idField)))
 					found = true;
-				else if (searchByIdField.getText().trim().equals(Integer.toString(currentEmployee.getEmployeeId()))) {
+				else if (getTextAndTrim(searchByIdField).equals(Integer.toString(currentEmployee.getEmployeeId()))) {
 					found = true;
 					displayRecords(currentEmployee);
 				} // end else if
@@ -458,7 +463,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 					while (firstId != currentEmployee.getEmployeeId()) {
 						// if found break from loop and display Employee details
 						// else look for next record
-						if (Integer.parseInt(searchByIdField.getText().trim()) == currentEmployee.getEmployeeId()) {
+						if (Integer.parseInt(getTextAndTrim(searchByIdField)) == currentEmployee.getEmployeeId()) {
 							found = true;
 							displayRecords(currentEmployee);
 							break;
@@ -472,7 +477,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 			} // end if
 		} // end try
 		catch (NumberFormatException e) {
-			searchByIdField.setBackground(new Color(255, 150, 150));
+			searchByIdField.setBackground(incorrectInput);
 			JOptionPane.showMessageDialog(null, "Wrong ID format!");
 		} // end catch
 		searchByIdField.setBackground(Color.WHITE);
@@ -488,9 +493,9 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 			String firstSurname = currentEmployee.getSurname().trim();
 			// if ID to search is already displayed do nothing else loop through
 			// records
-			if (searchBySurnameField.getText().trim().equalsIgnoreCase(surnameField.getText().trim()))
+			if (getTextAndTrim(searchBySurnameField).equalsIgnoreCase(getTextAndTrim(surnameField)))
 				found = true;
-			else if (searchBySurnameField.getText().trim().equalsIgnoreCase(currentEmployee.getSurname().trim())) {
+			else if (getTextAndTrim(searchBySurnameField).equalsIgnoreCase(currentEmployee.getSurname().trim())) {
 				found = true;
 				displayRecords(currentEmployee);
 			} // end else if
@@ -501,7 +506,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 				while (!firstSurname.trim().equalsIgnoreCase(currentEmployee.getSurname().trim())) {
 					// if found break from loop and display Employee details
 					// else look for next record
-					if (searchBySurnameField.getText().trim().equalsIgnoreCase(currentEmployee.getSurname().trim())) {
+					if (getTextAndTrim(searchBySurnameField).equalsIgnoreCase(currentEmployee.getSurname().trim())) {
 						found = true;
 						displayRecords(currentEmployee);
 						break;
@@ -711,46 +716,46 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		boolean isValid = true;
 		// if any of inputs are in wrong format, colour text field and display
 		// message
-		if (ppsField.isEditable() && ppsField.getText().trim().isEmpty()) {
-			ppsField.setBackground(new Color(255, 150, 150));
+		if (ppsField.isEditable() && getTextAndTrim(ppsField).isEmpty()) {
+			ppsField.setBackground(incorrectInput);
 			isValid = false;
 		} // end if
-		if (ppsField.isEditable() && correctPps(ppsField.getText().trim(), currentByteStart)) {
-			ppsField.setBackground(new Color(255, 150, 150));
+		if (ppsField.isEditable() && correctPps(getTextAndTrim(ppsField), currentByteStart)) {
+			ppsField.setBackground(incorrectInput);
 			isValid = false;
 		} // end if
-		if (surnameField.isEditable() && surnameField.getText().trim().isEmpty()) {
-			surnameField.setBackground(new Color(255, 150, 150));
+		if (surnameField.isEditable() && getTextAndTrim(surnameField).isEmpty()) {
+			surnameField.setBackground(incorrectInput);
 			isValid = false;
 		} // end if
-		if (firstNameField.isEditable() && firstNameField.getText().trim().isEmpty()) {
-			firstNameField.setBackground(new Color(255, 150, 150));
+		if (firstNameField.isEditable() && getTextAndTrim(firstNameField).isEmpty()) {
+			firstNameField.setBackground(incorrectInput);
 			isValid = false;
 		} // end if
 		if (genderCombo.getSelectedIndex() == 0 && genderCombo.isEnabled()) {
-			genderCombo.setBackground(new Color(255, 150, 150));
+			genderCombo.setBackground(incorrectInput);
 			isValid = false;
 		} // end if
 		if (departmentCombo.getSelectedIndex() == 0 && departmentCombo.isEnabled()) {
-			departmentCombo.setBackground(new Color(255, 150, 150));
+			departmentCombo.setBackground(incorrectInput);
 			isValid = false;
 		} // end if
 		try {// try to get values from text field
 			Double.parseDouble(salaryField.getText());
 			// check if salary is greater than 0
 			if (Double.parseDouble(salaryField.getText()) < 0) {
-				salaryField.setBackground(new Color(255, 150, 150));
+				salaryField.setBackground(incorrectInput);
 				isValid = false;
 			} // end if
 		} // end try
 		catch (NumberFormatException num) {
 			if (salaryField.isEditable()) {
-				salaryField.setBackground(new Color(255, 150, 150));
+				salaryField.setBackground(incorrectInput);
 				isValid = false;
 			} // end if
 		} // end catch
 		if (fullTimeCombo.getSelectedIndex() == 0 && fullTimeCombo.isEnabled()) {
-			fullTimeCombo.setBackground(new Color(255, 150, 150));
+			fullTimeCombo.setBackground(incorrectInput);
 			isValid = false;
 		} // end if
 			// display message if any input or format is wrong
